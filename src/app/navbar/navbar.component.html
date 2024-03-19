@@ -1,0 +1,63 @@
+<mat-toolbar color="accent" class="mat-elevation-z8">
+  <button (click)="toggleDrawer()" mat-icon-button>
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>Toolbar</span>
+  <span class="example-spacer"></span>
+  <button routerLink="" mat-button>Home</button>
+  <!-- <button mat-button>Contact</button> -->
+  <button [matMenuTriggerFor]="lvl1master" mat-button>Contact</button>
+  <mat-menu #lvl1master="matMenu">
+    <button [matMenuTriggerFor]="company" mat-menu-item>Company</button>
+    <button [matMenuTriggerFor]="customer" mat-menu-item>Customer</button>
+    <button [matMenuTriggerFor]="product" mat-menu-item>Product</button>
+  </mat-menu>
+
+  <mat-menu #company="matMenu">
+    <button mat-menu-item>Term</button>
+    <button mat-menu-item>Tax</button>
+    <button mat-menu-item>Currency</button>
+  </mat-menu>
+  <mat-menu #customer="matMenu">
+    <button mat-menu-item>Type</button>
+    <button mat-menu-item>Tax</button>
+  </mat-menu>
+  <mat-menu #product="matMenu">
+    <button mat-menu-item>Category</button>
+    <button [matMenuTriggerFor]="variant" mat-menu-item>Variant</button>
+  </mat-menu>
+
+  <mat-menu #variant="matMenu">
+    <button mat-menu-item>Color</button>
+    <button mat-menu-item>Size</button>
+  </mat-menu>
+
+  <a href="" mat-raised-button color="primary">Join Us</a>
+  <button mat-icon-button>
+    <mat-icon matBadgeColor="accent" matBadge="2" matBadgeSize="small"
+      >notifications</mat-icon
+    >
+  </button>
+</mat-toolbar>
+
+<app-sidebar></app-sidebar>
+
+<!-- <mat-drawer-container autosize>
+  <mat-drawer #drawer opened="true" mode="side" position="start">
+    <mat-nav-list>
+      <mat-list-item>
+        <button routerLink="card" mat-button>
+          <mat-icon>dashboard</mat-icon> Dashboard
+        </button>
+      </mat-list-item>
+      <mat-list-item>
+        <button routerLink="" mat-button><mat-icon>home</mat-icon> Home</button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <div style="text-align: center; min-height: 600px; max-height: min-content">
+      <router-outlet><app-table></app-table></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container> -->
