@@ -2,14 +2,10 @@ import { Component, EventEmitter, Inject, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogRef,
 } from '@angular/material/dialog';
-import { PeriodicElement } from '../core/models/elements-model';
-import { EditService } from '../edit.service';
-import { ROLE_DATA } from '../core/constants/roles-data';
-import { RolesComponent } from '../roles/roles.component';
+import { PeriodicElement } from '../../core/models/elements-model';
 import { Subscription } from 'rxjs';
+import { StepperService } from '../stepper.service';
 
 @Component({
   selector: 'app-edit',
@@ -17,36 +13,25 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./edit.component.css'],
 })
 export class EditComponent implements OnInit {
+  // editedData: any;
   editForm!: FormGroup;
   currentStep = 1;
   private dataSubscription?: Subscription;
 
-  @Output() editedData: EventEmitter<PeriodicElement> =
-    new EventEmitter<PeriodicElement>();
+  // @Output() editedData: EventEmitter<PeriodicElement> =
+  //   new EventEmitter<PeriodicElement>();
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<EditComponent>,
-    private dialog: MatDialog,
+    private stepperService: StepperService,
     private formBuilder: FormBuilder,
-    private editService: EditService
   ) {
     console.log('editcomponent', data);
   }
 
   ngOnInit() {
     this.createForm();
-    this.dataSubscription = this.editService
-      .getData()
-      .subscribe((sharedData) => {
-        this.editForm.patchValue(sharedData);
-      });
-  }
-
-  ngOnDestroy() {
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
-    }
+   
   }
 
   createForm() {
@@ -58,15 +43,10 @@ export class EditComponent implements OnInit {
     });
   }
 
-  nextStep() {
-    if (this.currentStep === 1) {
-      this.editService.setData(this.editForm.value);
-      const dialogRef = this.dialog.open(RolesComponent, {
-        width: '600px',
-        data: { roleData: ROLE_DATA },
-      });
-    }
-    this.dialogRef.close();
+  onNext() {
+    const editedData: PeriodicElement = this.editForm.value;
+    this.stepperService.setEditedData(editedData);
+    console.log('edited data sent to services',editedData);
   }
 }
 

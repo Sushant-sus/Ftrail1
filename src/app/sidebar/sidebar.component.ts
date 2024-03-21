@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SidebarService } from '../sidebar.service';
+import { SidebarService } from './sidebar.service';
 
 @Component({
   selector: 'app-sidebar',

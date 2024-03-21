@@ -1,0 +1,11 @@
+<mat-horizontal-stepper #stepper>
+    <mat-step [stepControl]="editForm">
+      <ng-template matStepLabel>Edit</ng-template>
+      <app-edit (next)="nextStep(stepper)"></app-edit>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Roles</ng-template>
+      <app-roles (prev)="prevStep(stepper)" (next)="nextStep(stepper)" ></app-roles>
+    </mat-step>
+  </mat-horizontal-stepper>
+  

@@ -8,12 +8,12 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { MaterialModule } from './material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './table/table.component';
-import { EditComponent } from './edit/edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RolesComponent } from './roles/roles.component';
 import { CommonModule } from '@angular/common';
 import { DepartmentsComponent } from './departments/departments.component';
-import { EditService } from './edit.service';
+import { MatStepperModule } from '@angular/material/stepper';
+import { StepperModule } from './stepper/stepper.module';
+
 
 @NgModule({
   declarations: [
@@ -21,8 +21,6 @@ import { EditService } from './edit.service';
     NavbarComponent,
     SidebarComponent,
     TableComponent,
-    EditComponent,
-    RolesComponent,
     DepartmentsComponent,
   ],
   imports: [
@@ -32,8 +30,9 @@ import { EditService } from './edit.service';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     CommonModule,
+    MatStepperModule,
+    StepperModule,
   ],
-  providers: [EditService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,8 +1,8 @@
 export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  name: string | undefined | null;
+  position: number | undefined | null;
+  weight: number | undefined | null;
+  symbol: string | undefined | null;
 }
 
 // constructor(position: number = null, name: string = '', weight: number = 0, symbol: string = '') {
